@@ -28,8 +28,8 @@ To run this application on your local machine, please follow these detailed step
 First, you need to get the project files onto your computer. You can do this by "cloning" the repository using Git, which is the recommended method if you want to stay updated.
 
 ```js
-git clone <your-repository-url>
-cd <repository-folder>
+git clone https://github.com/shubham050802/Auto_Grading_Tool.git
+cd Auto_Grading_Tool
 ```
 
 Alternatively, if you are not familiar with Git, you can download the project as a ZIP file from the main repository page on GitHub and extract it.
