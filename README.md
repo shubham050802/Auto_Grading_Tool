@@ -6,18 +6,24 @@ An intuitive and powerful web application built with Streamlit designed to help 
 
 ## Features
 * **Flexible File Upload:** Supports the most common file formats used in education, including CSV (.csv) and Excel (.xlsx, .xls). This ensures you can use your existing mark sheets without any need for conversion. The tool intelligently reads the first sheet of an Excel workbook.
+![](./Uploader.png)
 
 * **Interactive Grade Boundaries:** Go beyond fixed grading scales. Use dynamic, high-precision sliders in the sidebar to set the exact minimum mark required for each letter grade (A, A-, B, B-, etc.). This feature is perfect for applying curves or testing different grading scenarios on the fly to see their immediate impact.
+![](./Configuration.png)
 
 * **Instant Feedback Loop:** The entire dashboard is fully reactive. As you adjust a grade boundary slider, the histogram, summary statistics, and the final graded list all update in real-time. This eliminates guesswork and provides an immediate understanding of how your changes affect the final grade distribution.
 
 * **Rich Data Visualization:**
     * **Marks Distribution Histogram:** A clear and informative histogram visualizes the frequency distribution of student marks. This chart is crucial for quickly identifying trends, such as clusters of high-achievers or students who are struggling. It is enhanced with vertical lines that dynamically update to show exactly where your grade cutoffs fall, providing powerful visual context.
+    ![](./Histogram.png)
     * **Grade Summary Chart:** A clean bar chart displays the total number of students who achieved each letter grade. This provides a high-level overview perfect for reports and understanding the overall class performance at a glance.
+    ![](./GradeSummary.png)
     
 * **In-Depth Detailed Analysis:** 
     * **Key Summary Statistics:** The dashboard presents crucial statistical metrics, including the mean (average score), median (the middle score), standard deviation (measure of score spread), and the highest/lowest marks. These numbers help you quantitatively assess class performance and consistency.
     * **Full Graded List:** For complete transparency and record-keeping, the tool displays a full, sortable table containing the original student data alongside the newly assigned letter grades. This allows for easy verification and can be used for exporting or manual review.
+    
+    ![](./GradeList.png)
 
 ## 🛠️ How to Use
 To run this application on your local machine, please follow these detailed steps. No prior web development experience is needed.
