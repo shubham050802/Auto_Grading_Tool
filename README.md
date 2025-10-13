@@ -55,7 +55,7 @@ This command tells `pip` to read the file and install the specific versions of t
 With the dependencies installed, you can now launch the application.
 
 ```js
-streamlit run Grading_tool.py
+streamlit run grading_tool.py
 ```
 
 This command starts a local web server. Your default web browser will automatically open a new tab, and you will see the Interactive Grading Tool live and ready to use.
