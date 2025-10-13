@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 This command tells `pip` to read the file and install the specific versions of the libraries needed to run the application.
 
-#### 3. Run the Streamlit App
+### 3. Run the Streamlit App
 With the dependencies installed, you can now launch the application.
 
 ```js
