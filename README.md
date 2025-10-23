@@ -92,14 +92,27 @@ Once the app is running, you have three options to load data:
 
 #### Option 2: Load from URL
 1. Click on "🔗 Load from URL"
-2. Paste a direct link to your CSV or Excel file
-3. Click outside the text box to load the file
+2. Paste a link to your CSV or Excel file
+3. The tool automatically handles Google Drive, Dropbox, and OneDrive URLs
 
-**URL Examples:**
-- Direct CSV links: `https://example.com/student_marks.csv`
-- Google Sheets: File → Download → CSV, then use the download URL
-- Cloud storage: Dropbox, OneDrive public/shared links
-- GitHub raw file URLs
+**Supported Cloud Storage:**
+
+📁 **Google Drive**
+- Right-click file → Share → Get link
+- Set to "Anyone with the link can view"
+- Paste the entire URL (e.g., `https://drive.google.com/file/d/FILE_ID/view`)
+
+📁 **Dropbox**
+- Right-click file → Share → Create link
+- Paste the link directly
+
+📁 **OneDrive**
+- Right-click file → Share → Copy link
+- Paste the link directly
+
+📁 **Direct URLs**
+- Any publicly accessible CSV or Excel file URL
+- GitHub: Use the "Raw" file URL
 
 #### Option 3: Try Sample Data
 1. Click on "🎯 Try Sample Data"

@@ -13,25 +13,71 @@ st.set_page_config(
 )
 
 # --- Helper Functions ---
+def convert_cloud_url(url):
+    """Convert cloud storage URLs to direct download links"""
+    import re
+
+    # Google Drive URL patterns
+    if 'drive.google.com' in url:
+        # Extract file ID from various Google Drive URL formats
+        patterns = [
+            r'/file/d/([a-zA-Z0-9_-]+)',  # /file/d/FILE_ID/view
+            r'id=([a-zA-Z0-9_-]+)',        # ?id=FILE_ID
+            r'/open\?id=([a-zA-Z0-9_-]+)'  # /open?id=FILE_ID
+        ]
+
+        for pattern in patterns:
+            match = re.search(pattern, url)
+            if match:
+                file_id = match.group(1)
+                return f"https://drive.google.com/uc?export=download&id={file_id}"
+
+    # Dropbox URL - just add dl=1 parameter
+    elif 'dropbox.com' in url:
+        if '?' in url:
+            return url.replace('dl=0', 'dl=1') if 'dl=0' in url else url + '&dl=1'
+        else:
+            return url + '?dl=1'
+
+    # OneDrive URL - replace 'view' with 'download'
+    elif 'onedrive.live.com' in url or '1drv.ms' in url:
+        return url.replace('view.aspx', 'download.aspx') if 'view.aspx' in url else url
+
+    # Return original URL if no conversion needed
+    return url
+
 def load_file_from_url(url):
     """Load CSV or Excel file from URL"""
     try:
-        response = requests.get(url, timeout=10)
+        # Convert cloud storage URLs to direct download links
+        download_url = convert_cloud_url(url)
+
+        # Add headers to mimic browser request
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+
+        response = requests.get(download_url, headers=headers, timeout=30, allow_redirects=True)
         response.raise_for_status()
 
         # Detect file type from URL or content-type
-        if url.endswith('.csv') or 'text/csv' in response.headers.get('Content-Type', ''):
+        content_type = response.headers.get('Content-Type', '').lower()
+
+        if url.endswith('.csv') or 'text/csv' in content_type or 'csv' in download_url:
             return pd.read_csv(io.StringIO(response.text))
-        elif url.endswith(('.xlsx', '.xls')) or 'spreadsheet' in response.headers.get('Content-Type', ''):
+        elif url.endswith(('.xlsx', '.xls')) or 'spreadsheet' in content_type or 'excel' in content_type:
             return pd.read_excel(io.BytesIO(response.content), engine='openpyxl')
         else:
             # Try CSV first, then Excel
             try:
                 return pd.read_csv(io.StringIO(response.text))
             except:
-                return pd.read_excel(io.BytesIO(response.content), engine='openpyxl')
+                try:
+                    return pd.read_excel(io.BytesIO(response.content), engine='openpyxl')
+                except:
+                    raise Exception("Could not parse file. Please ensure it's a valid CSV or Excel file.")
     except requests.exceptions.RequestException as e:
-        raise Exception(f"Failed to download file: {str(e)}")
+        raise Exception(f"Failed to download file from URL. Please check:\n- The URL is accessible and not password-protected\n- You have an internet connection\n- For Google Drive: Make sure link sharing is enabled\n\nError: {str(e)}")
     except Exception as e:
         raise Exception(f"Failed to read file: {str(e)}")
 
@@ -114,11 +160,30 @@ if input_method == "📁 Upload File":
 elif input_method == "🔗 Load from URL":
     file_url = st.text_input(
         "Enter file URL:",
-        placeholder="https://example.com/student_marks.csv",
-        help="Paste a direct link to a CSV or Excel file (e.g., Google Sheets export URL, Dropbox link, etc.)"
+        placeholder="https://drive.google.com/file/d/YOUR_FILE_ID/view",
+        help="Paste a link to your CSV or Excel file from Google Drive, Dropbox, OneDrive, or any direct URL"
     )
     if file_url:
-        st.info("💡 **Tip for Google Sheets**: Use File → Download → CSV, then use the download link")
+        st.success("✅ Cloud storage URLs supported: Google Drive, Dropbox, OneDrive")
+        with st.expander("📖 How to get shareable links from different platforms"):
+            st.markdown("""
+            **Google Drive:**
+            1. Right-click your file → "Share" → "Get link"
+            2. Set to "Anyone with the link can view"
+            3. Copy and paste the entire URL here
+
+            **Dropbox:**
+            1. Right-click your file → "Share" → "Create link"
+            2. Copy and paste the link here
+
+            **OneDrive:**
+            1. Right-click your file → "Share" → "Copy link"
+            2. Paste the link here
+
+            **Direct URLs:**
+            - Any publicly accessible CSV or Excel file URL will work
+            - GitHub: Use the "Raw" file URL
+            """)
 else:  # Sample Data
     use_sample = True
     st.success("✨ Using sample data with 50 students. Try adjusting the grade boundaries!")
