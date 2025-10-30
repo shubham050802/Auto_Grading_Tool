@@ -95,12 +95,15 @@ Once the app is running, you have three options to load data:
 2. Paste a link to your CSV or Excel file
 3. The tool automatically handles Google Drive, Dropbox, and OneDrive URLs
 
+⚠️ **Important**: URL loading has a 50 MB file size limit to prevent memory issues. For larger files, please use the "Upload File" option.
+
 **Supported Cloud Storage:**
 
 📁 **Google Drive**
 - Right-click file → Share → Get link
 - Set to "Anyone with the link can view"
 - Paste the entire URL (e.g., `https://drive.google.com/file/d/FILE_ID/view`)
+- Note: Files must be < 50 MB
 
 📁 **Dropbox**
 - Right-click file → Share → Create link
