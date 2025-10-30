@@ -92,14 +92,20 @@ Once the app is running, you have three options to load data:
 
 #### Option 2: Load from URL
 1. Click on "🔗 Load from URL"
-2. Paste a link to your CSV or Excel file
-3. The tool automatically handles Google Drive, Dropbox, and OneDrive URLs
+2. Paste a link to your Google Sheets, CSV, or Excel file
+3. The tool automatically handles Google Sheets, Google Drive, Dropbox, and OneDrive URLs
 
 ⚠️ **Important**: URL loading has a 50 MB file size limit to prevent memory issues. For larger files, please use the "Upload File" option.
 
 **Supported Cloud Storage:**
 
-📁 **Google Drive**
+📊 **Google Sheets** ⭐ Recommended:
+- Click "Share" button (top right) → Set to "Anyone with the link can view"
+- Copy and paste the entire URL (e.g., `https://docs.google.com/spreadsheets/d/SHEET_ID/edit`)
+- The tool will automatically export the first sheet as CSV
+- Works perfectly for live data that updates frequently
+
+📁 **Google Drive Files**
 - Right-click file → Share → Get link
 - Set to "Anyone with the link can view"
 - Paste the entire URL (e.g., `https://drive.google.com/file/d/FILE_ID/view`)

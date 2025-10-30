@@ -17,8 +17,23 @@ def convert_cloud_url(url):
     """Convert cloud storage URLs to direct download links"""
     import re
 
+    # Google Sheets URL - convert to CSV export
+    if 'docs.google.com/spreadsheets' in url:
+        # Extract spreadsheet ID from various Google Sheets URL formats
+        patterns = [
+            r'/spreadsheets/d/([a-zA-Z0-9_-]+)',  # /spreadsheets/d/SHEET_ID/edit
+            r'spreadsheets/d/([a-zA-Z0-9_-]+)',   # Alternative pattern
+        ]
+
+        for pattern in patterns:
+            match = re.search(pattern, url)
+            if match:
+                sheet_id = match.group(1)
+                # Export as CSV (first sheet by default)
+                return f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv"
+
     # Google Drive URL patterns
-    if 'drive.google.com' in url:
+    elif 'drive.google.com' in url:
         # Extract file ID from various Google Drive URL formats
         patterns = [
             r'/file/d/([a-zA-Z0-9_-]+)',  # /file/d/FILE_ID/view
@@ -218,14 +233,20 @@ elif input_method == "🔗 Load from URL":
     st.warning("⚠️ **File Size Limit**: Maximum 50 MB for URL loading. For larger files, please use 'Upload File' option.")
     file_url = st.text_input(
         "Enter file URL:",
-        placeholder="https://drive.google.com/file/d/YOUR_FILE_ID/view",
-        help="Paste a link to your CSV or Excel file from Google Drive, Dropbox, OneDrive, or any direct URL"
+        placeholder="https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
+        help="Paste a link to your Google Sheets, Google Drive, Dropbox, OneDrive, or direct CSV/Excel file URL"
     )
     if file_url:
-        st.success("✅ Cloud storage URLs supported: Google Drive, Dropbox, OneDrive")
+        st.success("✅ Supported: Google Sheets, Google Drive, Dropbox, OneDrive, Direct URLs")
         with st.expander("📖 How to get shareable links from different platforms"):
             st.markdown("""
-            **Google Drive:**
+            **Google Sheets** ⭐ Easiest Option:
+            1. Click "Share" button (top right corner)
+            2. Set to "Anyone with the link can view"
+            3. Copy and paste the entire URL here
+            4. The tool will automatically export the first sheet as CSV
+
+            **Google Drive Files:**
             1. Right-click your file → "Share" → "Get link"
             2. Set to "Anyone with the link can view"
             3. Copy and paste the entire URL here
