@@ -60,6 +60,58 @@ streamlit run grading_tool.py
 
 This command starts a local web server. Your default web browser will automatically open a new tab, and you will see the Interactive Grading Tool live and ready to use.
 
+### 4. Using the Application
+
+Once the app is running, you have three options to load data:
+
+#### Option 1: Upload a File
+1. Click on "📁 Upload File"
+2. Drag and drop or browse to select your CSV or Excel file
+3. The file will be loaded and validated automatically
+
+#### Option 2: Load from URL
+1. Click on "🔗 Load from URL"
+2. Paste a link to your Google Sheets, CSV, or Excel file
+3. The tool automatically handles Google Sheets, Google Drive, Dropbox, and OneDrive URLs
+
+⚠️ **Important**: URL loading has a 50 MB file size limit to prevent memory issues. For larger files, please use the "Upload File" option.
+
+**Supported Cloud Storage:**
+
+📊 **Google Sheets** ⭐ Recommended:
+- Click "Share" button (top right) → Set to "Anyone with the link can view"
+- Copy and paste the entire URL (e.g., `https://docs.google.com/spreadsheets/d/SHEET_ID/edit`)
+- The tool will automatically export the first sheet as CSV
+- Works perfectly for live data that updates frequently
+
+📁 **Google Drive Files**
+- Right-click file → Share → Get link
+- Set to "Anyone with the link can view"
+- Paste the entire URL (e.g., `https://drive.google.com/file/d/FILE_ID/view`)
+- Note: Files must be < 50 MB
+
+📁 **Dropbox**
+- Right-click file → Share → Create link
+- Paste the link directly
+
+📁 **OneDrive**
+- Right-click file → Share → Copy link
+- Paste the link directly
+
+📁 **Direct URLs**
+- Any publicly accessible CSV or Excel file URL
+- GitHub: Use the "Raw" file URL
+
+#### Option 3: Try Sample Data
+1. Click on "🎯 Try Sample Data"
+2. Instantly see the tool in action with 50 sample students
+3. Experiment with grade boundaries to see real-time updates
+
+After loading data:
+- Adjust grade boundaries using the sliders in the sidebar
+- View real-time updates in the histogram and statistics
+- Export your graded results using the download buttons
+
 ### 📂 Project Files
 * `Grading_tool.py`: The main Python script that contains all the application logic, from the user interface to the data processing and visualizations.
 * `requirements.txt`: The dependency list. This file is crucial for ensuring the application runs correctly in any environment by specifying the necessary libraries.
