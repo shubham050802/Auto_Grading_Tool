@@ -5,22 +5,8 @@ An intuitive and powerful web application built with Streamlit designed to help 
 ### Link for deployed application : https://autogradingtool.streamlit.app/
 
 ## Features
-
-### 🎯 Multiple Input Methods
-* **File Upload:** Drag and drop or browse to upload CSV or Excel files (.csv, .xlsx, .xls)
-* **URL Loading:** Load files directly from URLs (Google Sheets export links, Dropbox, OneDrive, etc.)
-* **Sample Data:** Try the tool instantly with pre-loaded sample data (50 students)
+* **Flexible File Upload:** Supports the most common file formats used in education, including CSV (.csv) and Excel (.xlsx, .xls). This ensures you can use your existing mark sheets without any need for conversion. The tool intelligently reads the first sheet of an Excel workbook.
 ![](./images/Uploader.png)
-
-### 🔒 Smart Data Validation
-* **Automatic validation** of uploaded data for empty files, missing columns, and invalid marks
-* **Warning system** for marks outside the 0-100 range
-* **Error prevention** with clear, helpful error messages and troubleshooting tips
-
-### ✅ Grade Boundary Validation
-* **Real-time validation** ensures grade boundaries are in logical descending order (A > A- > B > B-, etc.)
-* **Instant feedback** when boundaries are set incorrectly
-* **Prevents grading errors** before they happen
 
 * **Interactive Grade Boundaries:** Go beyond fixed grading scales. Use dynamic, high-precision sliders in the sidebar to set the exact minimum mark required for each letter grade (A, A-, B, B-, etc.). This feature is perfect for applying curves or testing different grading scenarios on the fly to see their immediate impact.
 ![](./images/Configuration.png)
@@ -33,18 +19,11 @@ An intuitive and powerful web application built with Streamlit designed to help 
     * **Grade Summary Chart:** A clean bar chart displays the total number of students who achieved each letter grade. This provides a high-level overview perfect for reports and understanding the overall class performance at a glance.
     ![](./images/GradeSummary.png)
     
-* **In-Depth Detailed Analysis:**
-    * **Key Summary Statistics:** The dashboard presents crucial statistical metrics, including the mean (average score), median (the middle score), standard deviation (measure of score spread), highest/lowest marks, and total student count.
-    * **Color-Coded Graded List:** A beautifully formatted, sortable table with color-coded grades for easy visualization (green for A/A-, blue for B/B-, yellow for C/C-, red for D/E/F).
-    * **Pass/Fail Analytics:** Automatic calculation of pass rate and fail rate with visual metrics.
-    * **Percentage Distribution:** View the percentage of students in each grade category.
-
+* **In-Depth Detailed Analysis:** 
+    * **Key Summary Statistics:** The dashboard presents crucial statistical metrics, including the mean (average score), median (the middle score), standard deviation (measure of score spread), and the highest/lowest marks. These numbers help you quantitatively assess class performance and consistency.
+    * **Full Graded List:** For complete transparency and record-keeping, the tool displays a full, sortable table containing the original student data alongside the newly assigned letter grades. This allows for easy verification and can be used for exporting or manual review.
+    
     ![](./images/GradeList.png)
-
-### 💾 Export Functionality
-* **Download Graded Results:** Export the complete graded student list as a CSV file
-* **Multiple Download Points:** Download buttons in both the sidebar and the graded list tab
-* **Ready for Record-Keeping:** Perfect for uploading to your LMS or keeping for your records
 
 ## 🛠️ How to Use
 To run this application on your local machine, please follow these detailed steps. No prior web development experience is needed.
@@ -143,6 +122,5 @@ This project relies on the following powerful Python libraries:
 * `streamlit`: The core framework used to build and run the interactive web application.
 * `pandas`: The essential library for data manipulation and analysis; used here to read and process the uploaded CSV and Excel files.
 * `numpy`: A fundamental package for numerical computation in Python, used for handling numerical data efficiently.
-* `matplotlib`: A comprehensive library for creating static, animated, and interactive visualizations; used to generate the histogram and charts.
+* `matplotlib`: A comprehensive library for creating static, animated, and interactive visualizations; used to generate the histogram.
 * `openpyxl`: A specialized library that allows pandas to read and write modern Excel (.xlsx) files.
-* `requests`: HTTP library for loading files from URLs, enabling the URL input feature.
