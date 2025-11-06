@@ -237,26 +237,26 @@ elif input_method == "🔗 Load from URL":
         help="Paste a link to your Google Sheets, Google Drive, Dropbox, OneDrive, or direct CSV/Excel file URL"
     )
     if file_url:
-        st.success("✅ Supported: Google Sheets, Google Drive, Dropbox, OneDrive, Direct URLs")
-        with st.expander("📖 How to get shareable links from different platforms"):
+        st.success("Supported: Google Sheets, Google Drive, Dropbox, OneDrive, Direct URLs")
+        with st.expander("How to get shareable links from different platforms"):
             st.markdown("""
-            **Google Sheets** ⭐ Easiest Option:
+            **Google Sheets - Easiest Option:**
             1. Click "Share" button (top right corner)
             2. Set to "Anyone with the link can view"
             3. Copy and paste the entire URL here
             4. The tool will automatically export the first sheet as CSV
 
             **Google Drive Files:**
-            1. Right-click your file → "Share" → "Get link"
+            1. Right-click your file > "Share" > "Get link"
             2. Set to "Anyone with the link can view"
             3. Copy and paste the entire URL here
 
             **Dropbox:**
-            1. Right-click your file → "Share" → "Create link"
+            1. Right-click your file > "Share" > "Create link"
             2. Copy and paste the link here
 
             **OneDrive:**
-            1. Right-click your file → "Share" → "Copy link"
+            1. Right-click your file > "Share" > "Copy link"
             2. Paste the link here
 
             **Direct URLs:**
