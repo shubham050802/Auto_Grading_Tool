@@ -2,7 +2,7 @@
 
 An intuitive and powerful web application built with Streamlit designed to help educators, teachers, and instructors grade student marks, visualize complex distributions, and analyze class performance interactively. This tool moves beyond static spreadsheets by providing a dynamic interface to explore grading scenarios and gain deeper insights into student performance.The application is designed for anyone in an educational role who needs to translate numerical scores into grades efficiently. By automating the grading process and providing immediate visual feedback, it saves valuable time and helps in making more informed decisions about grade boundaries and overall class assessment.✨
 
-### Link for deployed application : https://autogradingtool.streamlit.app/
+### Link for deployed application : https://gradingtool.streamlit.app/
 
 ## Features
 
