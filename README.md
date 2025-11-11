@@ -2,11 +2,25 @@
 
 An intuitive and powerful web application built with Streamlit designed to help educators, teachers, and instructors grade student marks, visualize complex distributions, and analyze class performance interactively. This tool moves beyond static spreadsheets by providing a dynamic interface to explore grading scenarios and gain deeper insights into student performance.The application is designed for anyone in an educational role who needs to translate numerical scores into grades efficiently. By automating the grading process and providing immediate visual feedback, it saves valuable time and helps in making more informed decisions about grade boundaries and overall class assessment.✨
 
-### Link for deployed application : https://autogradingtool.streamlit.app/
+### Link for deployed application : https://gradingtool.streamlit.app/
 
 ## Features
-* **Flexible File Upload:** Supports the most common file formats used in education, including CSV (.csv) and Excel (.xlsx, .xls). This ensures you can use your existing mark sheets without any need for conversion. The tool intelligently reads the first sheet of an Excel workbook.
+
+### 🎯 Multiple Input Methods
+* **File Upload:** Drag and drop or browse to upload CSV or Excel files (.csv, .xlsx, .xls)
+* **URL Loading:** Load files directly from URLs (Google Sheets export links, Dropbox, OneDrive, etc.)
+* **Sample Data:** Try the tool instantly with pre-loaded sample data (50 students)
 ![](./images/Uploader.png)
+
+### 🔒 Smart Data Validation
+* **Automatic validation** of uploaded data for empty files, missing columns, and invalid marks
+* **Warning system** for marks outside the 0-100 range
+* **Error prevention** with clear, helpful error messages and troubleshooting tips
+
+### ✅ Grade Boundary Validation
+* **Real-time validation** ensures grade boundaries are in logical descending order (A > A- > B > B-, etc.)
+* **Instant feedback** when boundaries are set incorrectly
+* **Prevents grading errors** before they happen
 
 * **Interactive Grade Boundaries:** Go beyond fixed grading scales. Use dynamic, high-precision sliders in the sidebar to set the exact minimum mark required for each letter grade (A, A-, B, B-, etc.). This feature is perfect for applying curves or testing different grading scenarios on the fly to see their immediate impact.
 ![](./images/Configuration.png)
@@ -19,11 +33,18 @@ An intuitive and powerful web application built with Streamlit designed to help 
     * **Grade Summary Chart:** A clean bar chart displays the total number of students who achieved each letter grade. This provides a high-level overview perfect for reports and understanding the overall class performance at a glance.
     ![](./images/GradeSummary.png)
     
-* **In-Depth Detailed Analysis:** 
-    * **Key Summary Statistics:** The dashboard presents crucial statistical metrics, including the mean (average score), median (the middle score), standard deviation (measure of score spread), and the highest/lowest marks. These numbers help you quantitatively assess class performance and consistency.
-    * **Full Graded List:** For complete transparency and record-keeping, the tool displays a full, sortable table containing the original student data alongside the newly assigned letter grades. This allows for easy verification and can be used for exporting or manual review.
-    
+* **In-Depth Detailed Analysis:**
+    * **Key Summary Statistics:** The dashboard presents crucial statistical metrics, including the mean (average score), median (the middle score), standard deviation (measure of score spread), highest/lowest marks, and total student count.
+    * **Color-Coded Graded List:** A beautifully formatted, sortable table with color-coded grades for easy visualization (green for A/A-, blue for B/B-, yellow for C/C-, red for D/E/F).
+    * **Pass/Fail Analytics:** Automatic calculation of pass rate and fail rate with visual metrics.
+    * **Percentage Distribution:** View the percentage of students in each grade category.
+
     ![](./images/GradeList.png)
+
+### 💾 Export Functionality
+* **Download Graded Results:** Export the complete graded student list as a CSV file
+* **Multiple Download Points:** Download buttons in both the sidebar and the graded list tab
+* **Ready for Record-Keeping:** Perfect for uploading to your LMS or keeping for your records
 
 ## 🛠️ How to Use
 To run this application on your local machine, please follow these detailed steps. No prior web development experience is needed.
@@ -60,6 +81,58 @@ streamlit run grading_tool.py
 
 This command starts a local web server. Your default web browser will automatically open a new tab, and you will see the Interactive Grading Tool live and ready to use.
 
+### 4. Using the Application
+
+Once the app is running, you have three options to load data:
+
+#### Option 1: Upload a File
+1. Click on "📁 Upload File"
+2. Drag and drop or browse to select your CSV or Excel file
+3. The file will be loaded and validated automatically
+
+#### Option 2: Load from URL
+1. Click on "🔗 Load from URL"
+2. Paste a link to your Google Sheets, CSV, or Excel file
+3. The tool automatically handles Google Sheets, Google Drive, Dropbox, and OneDrive URLs
+
+⚠️ **Important**: URL loading has a 50 MB file size limit to prevent memory issues. For larger files, please use the "Upload File" option.
+
+**Supported Cloud Storage:**
+
+📊 **Google Sheets** ⭐ Recommended:
+- Click "Share" button (top right) → Set to "Anyone with the link can view"
+- Copy and paste the entire URL (e.g., `https://docs.google.com/spreadsheets/d/SHEET_ID/edit`)
+- The tool will automatically export the first sheet as CSV
+- Works perfectly for live data that updates frequently
+
+📁 **Google Drive Files**
+- Right-click file → Share → Get link
+- Set to "Anyone with the link can view"
+- Paste the entire URL (e.g., `https://drive.google.com/file/d/FILE_ID/view`)
+- Note: Files must be < 50 MB
+
+📁 **Dropbox**
+- Right-click file → Share → Create link
+- Paste the link directly
+
+📁 **OneDrive**
+- Right-click file → Share → Copy link
+- Paste the link directly
+
+📁 **Direct URLs**
+- Any publicly accessible CSV or Excel file URL
+- GitHub: Use the "Raw" file URL
+
+#### Option 3: Try Sample Data
+1. Click on "🎯 Try Sample Data"
+2. Instantly see the tool in action with 50 sample students
+3. Experiment with grade boundaries to see real-time updates
+
+After loading data:
+- Adjust grade boundaries using the sliders in the sidebar
+- View real-time updates in the histogram and statistics
+- Export your graded results using the download buttons
+
 ### 📂 Project Files
 * `Grading_tool.py`: The main Python script that contains all the application logic, from the user interface to the data processing and visualizations.
 * `requirements.txt`: The dependency list. This file is crucial for ensuring the application runs correctly in any environment by specifying the necessary libraries.
@@ -70,5 +143,6 @@ This project relies on the following powerful Python libraries:
 * `streamlit`: The core framework used to build and run the interactive web application.
 * `pandas`: The essential library for data manipulation and analysis; used here to read and process the uploaded CSV and Excel files.
 * `numpy`: A fundamental package for numerical computation in Python, used for handling numerical data efficiently.
-* `matplotlib`: A comprehensive library for creating static, animated, and interactive visualizations; used to generate the histogram.
+* `matplotlib`: A comprehensive library for creating static, animated, and interactive visualizations; used to generate the histogram and charts.
 * `openpyxl`: A specialized library that allows pandas to read and write modern Excel (.xlsx) files.
+* `requests`: HTTP library for loading files from URLs, enabling the URL input feature.
